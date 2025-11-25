@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import CardClima from "../cardClima/CardClima";
 
 type CardClimaPorHoraProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   mostrarClimaDia: any;
 };
 
@@ -13,11 +13,13 @@ const ClimaPorHora = ({ mostrarClimaDia }: CardClimaPorHoraProps) => {
     const dados = mostrarClimaDia?.climaDia;
     if(!dados?.time || !Array.isArray(dados.time)) return;
 
+    const hoje = new Date().toISOString().split("T")[0]; //especifica dados de hoje
+
     const horas = dados.time.map((hora: number, i: number) => ({
       data: hora,
       temperatura: dados.temperature_2m[i],
       weathercode: dados.weather_code[i],
-    }));
+    })).filter((e: any) => e.data.startsWith(hoje));
     
     setClima(horas);
   }, [mostrarClimaDia]);

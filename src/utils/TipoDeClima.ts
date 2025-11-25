@@ -1,6 +1,6 @@
 export const getTipoDeClima = (codigo: number): number => {
     switch (true) {
-        case codigo == 0://Céu Limpo
+        case codigo == 0: //Céu Limpo
             return 0;
 
         case codigo >= 1 && codigo <= 3://Nublado
@@ -32,66 +32,95 @@ export const getTipoDeClima = (codigo: number): number => {
 export const getBackground = (codigo: number, hora: number): string => {
     switch (true) {
       case codigo == 0 || codigo == 8 || codigo == 5 && hora >= 5 && hora < 18://Céu Limpo dia
-        // console.log("1");
+        
         return "/AppClimaDia.jpg";
 
       case codigo == 0 || codigo == 8 || codigo == 5 && hora >= 18 && hora < 5://Céu Limpo noite
-      // console.log("2");
+      
         return "/AppClimaNoite.jpg";
 
       case codigo == 1 && hora >= 5 && hora < 18://Nublado dia
-      // console.log("3");
+      
         return "/AppClimaDia.jpg";
 
       case codigo == 1 && hora >= 18 && hora < 5://Nublado noite
-      // console.log("4");
+      
         return "/AppClimaNoite.jpg";
 
       case codigo == 2 && hora >= 5 && hora < 18://Neblina dia
-      // console.log("5");
+      
         return "/AppClimaDiaNevoa.jpg";
 
       case codigo == 2 && hora >= 18 && hora < 5://Neblina noite
-      // console.log("6");
+      
         return "/AppClimaNoiteNevoa.jpg";
 
       case codigo == 3 && hora >= 5 && hora < 18://Chuva dia
-      // console.log("7");
+      
         return "/AppClimaDiaChuva.png";
 
       case codigo == 3 && hora >= 18 && hora < 5://Chuva noite
-      // console.log("8");
+      
         return "/AppClimaNoiteChuva.png";
 
       case codigo == 4 || codigo == 6 && hora >= 5 && hora < 18://Neve Limpo dia
-      // console.log("9");
+      
         return "/AppClimaNeveDia.jpg";
 
       case codigo == 4 || codigo == 6 && hora >= 18 && hora < 5://Neve Limpo noite
-      // console.log("10");
+      
         return "/AppClimaNeveNoite.jpg";
 
       case codigo == 7 && hora >= 5 && hora < 18://Tempestade dia
-      // console.log("11");
+      
         return "/AppClimaDiaVento.jpg";
 
       case codigo == 7 && hora >= 18 && hora < 5://Tempestade noite
-      // console.log("12");
+      
         return "/AppClimaNoiteNevoa.jpg";
     
       default:
-        // console.log("13");
+        
         return "/AppClimaDia.jpg";
     }
   }
+// <Sun size={32} />
+  export const getIcone = (codigo: number, hora: number): string => {
+    switch (true) {
+        case codigo == 0 || codigo == 8 || codigo == 5 && hora >= 5 && hora < 18://Céu Limpo dia
+        
+        return "SunIcon";
 
-  export const getIcone = (codigo: number) => {
-    switch (codigo) {
-        case 0:
-            
-            break;
+      case codigo == 0 || codigo == 8 || codigo == 5 && hora >= 18 && hora < 5://Céu Limpo noite
+      
+        return "MoonIcon";
+
+      case codigo == 1 && hora >= 5 && hora < 18://Nublado dia
+      
+        return "SunIcon";
+
+      case codigo == 1 && hora >= 18 && hora < 5://Nublado noite
+      
+        return "MoonIcon";
+
+      case codigo == 2://Neblina dia
+      
+        return "CloudFogIcon";
+
+      case codigo == 3://Chuva dia
+      
+        return "CloudRainIcon";
+
+      case codigo == 4 || codigo == 6://Neve Limpo dia
+      
+        return "CloudSnowIcon";
+
+      case codigo == 7://Tempestade dia
+      
+        return "WindIcon";
     
-        default:
-            break;
+      default:
+        
+        return "SunIcon";
     }
   }
