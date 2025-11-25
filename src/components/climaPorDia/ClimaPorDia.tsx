@@ -9,8 +9,6 @@ type CardClimaPorDiaProps = {
 const ClimaPorDia = ({ mostrarClimaSemana }: CardClimaPorDiaProps) => {
   const [clima, setClima] = useState([]);
 
-  //console.log(`Render: ${mostrarClimaSemana}`);
-
   useEffect(() => {
     const dados = mostrarClimaSemana?.climaSemana;
     if(!dados?.time || !Array.isArray(dados.time)) return;

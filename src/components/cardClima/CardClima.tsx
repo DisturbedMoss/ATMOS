@@ -13,11 +13,11 @@ const CardClima = ({ tipo, mostrarClimaSemana, mostrarClimaDia }: CardClimaProps
       {tipo == 1 ? (
         <div className="w-1/5">
           <div className="flex flex-col justify-center items-center">
-            <p>Agora</p>
+            <p>{mostrarClimaDia?.data}</p>
             <span>
               <CloudRainIcon size={32} color="#0f1724" weight="bold" />
             </span>
-            <p className="flex">{mostrarClimaDia?.clima?.temperature} ºC</p>
+            <p className="flex">{mostrarClimaDia?.temperatura} ºC</p>
           </div>
         </div>
       ) : (
