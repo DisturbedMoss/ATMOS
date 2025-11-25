@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CloudRainIcon } from "@phosphor-icons/react";
 
 type CardClimaProps = {
   tipo: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  mostrarClima: any;
+  mostrarClimaSemana?: any;
+  mostrarClimaDia?: any;
 };
 
-const CardClima = ({ tipo, mostrarClima }: CardClimaProps) => {
+const CardClima = ({ tipo, mostrarClimaSemana, mostrarClimaDia }: CardClimaProps) => {
   return (
     <>
       {tipo == 1 ? (
@@ -16,18 +17,18 @@ const CardClima = ({ tipo, mostrarClima }: CardClimaProps) => {
             <span>
               <CloudRainIcon size={32} color="#0f1724" weight="bold" />
             </span>
-            <p className="flex">{mostrarClima?.clima?.temperature} ºC</p>
+            <p className="flex">{mostrarClimaDia?.clima?.temperature} ºC</p>
           </div>
         </div>
       ) : (
         <div className="w-full">
           <div className="flex gap-5 justify-start items-center">
-            <p>{mostrarClima.data}</p>
+            <p>{mostrarClimaSemana.data}</p>
             <span>
               <CloudRainIcon size={32} color="#0f1724" weight="bold" />
             </span>
-            <p>{mostrarClima.weathercode}</p>
-            <p>{mostrarClima.tempMin}º - {mostrarClima.tempMax}º</p>
+            <p>{mostrarClimaSemana.weathercode}</p>
+            <p>{mostrarClimaSemana.tempMin}º - {mostrarClimaSemana.tempMax}º</p>
           </div>
         </div>
       )}

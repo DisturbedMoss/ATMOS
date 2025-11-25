@@ -1,15 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { buscarCidade } from "../../services/GeoCodingService";
-import { carregarClimaAtual } from "../../services/OpenMeteoService";
+import { carregarClimaAtual, carregarClimaDaSemana, carregarClimaDoDia } from "../../services/OpenMeteoService";
 
 type NavbarProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClimaCarregado: (clima: any) => void;
+  onClimaDiaCarregado: (clima: any) => void;
+  onClimaSemanaCarregado: (clima: any) => void;
 };
 
-const Navbar = ({ onClimaCarregado }: NavbarProps) => {
+const Navbar = ({ onClimaCarregado, onClimaDiaCarregado, onClimaSemanaCarregado }: NavbarProps) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [cidade, setCidade] = useState("");
 
@@ -28,10 +30,20 @@ const Navbar = ({ onClimaCarregado }: NavbarProps) => {
 
       const clima = await carregarClimaAtual(dadosCidade.lat, dadosCidade.lon);
 
+      const climaDia = await carregarClimaDoDia(dadosCidade.lat, dadosCidade.lon);
+
+      const climaSemana = await carregarClimaDaSemana(dadosCidade.lat, dadosCidade.lon);
+
       onClimaCarregado({
         cidade: dadosCidade.nome,
         pais: dadosCidade.pais,
         clima: clima,
+      });
+      onClimaDiaCarregado({
+        climaDia: climaDia,
+      });
+      onClimaSemanaCarregado({
+        climaSemana: climaSemana,
       });
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {

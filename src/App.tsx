@@ -14,12 +14,14 @@ import Home from './pages/home/Home'
 
 function App() {
   const [mostrarClima, setMostrarClima] = useState(null);
+  const [mostrarClimaDia, setMostrarClimaDia] = useState(null);
+  const [mostrarClimaSemana, setMostrarClimaSemana] = useState(null);
 
   return (
     <>
-      <Navbar onClimaCarregado={setMostrarClima} />
+      <Navbar onClimaCarregado={setMostrarClima} onClimaDiaCarregado={setMostrarClimaDia} onClimaSemanaCarregado={setMostrarClimaSemana} />
 
-      <Home mostrarClima={mostrarClima}/>
+      <Home mostrarClima={mostrarClima} mostrarClimaDia={mostrarClimaDia} mostrarClimaSemana={mostrarClimaSemana} />
       
       <Footer />
     </>

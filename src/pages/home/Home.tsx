@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import ClimaAtual from "../../components/climaAtual/ClimaAtual";
 import ClimaPorDia from "../../components/climaPorDia/ClimaPorDia";
@@ -6,11 +7,12 @@ import DataAtual from "../../components/dataAtual/DataAtual";
 import { getBackground, getTipoDeClima } from "../../utils/TipoDeClima";
 
 type HomeProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   mostrarClima: any;
+  mostrarClimaDia: any;
+  mostrarClimaSemana: any;
 };
 
-const Home = ({ mostrarClima }: HomeProps) => {
+const Home = ({ mostrarClima, mostrarClimaDia, mostrarClimaSemana }: HomeProps) => {
   const [iconeClima, setIconeClima] = useState(0);
   const [background, setBackground] = useState("");
   const [hora, setHora] = useState(0);
@@ -55,9 +57,9 @@ const Home = ({ mostrarClima }: HomeProps) => {
             </div>
           </div>
           <div className="grid grid-rows-4 gap-3">
-            <ClimaPorHora mostrarClima={mostrarClima} />
+            <ClimaPorHora mostrarClimaDia={mostrarClimaDia} />
             <div className="row-span-3">
-              <ClimaPorDia mostrarClima={mostrarClima} />
+              <ClimaPorDia mostrarClimaSemana={mostrarClimaSemana} />
             </div>
           </div>
         </div>

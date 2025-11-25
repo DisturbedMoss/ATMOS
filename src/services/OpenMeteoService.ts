@@ -32,6 +32,7 @@ export const carregarClimaDaSemana = async (lat: number, lon: number) => {
         timezone: "auto",
       },
     });
+    
     return resposta.data.daily;
   } catch (e) {
     console.error(e);
