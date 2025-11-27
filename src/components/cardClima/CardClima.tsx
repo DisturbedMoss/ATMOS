@@ -30,24 +30,37 @@ const CardClima = ({ tipo, mostrarClimaSemana, mostrarClimaDia }: CardClimaProps
     weekday: "short",
   });
 
+  const isHoje = (data: string | Date) => {
+    const dataAPI = new Date(data);
+    const hoje = new Date();
+
+    return(
+      dataAPI.getDate() === hoje.getDate() &&
+      dataAPI.getMonth() === hoje.getMonth() &&
+      dataAPI.getFullYear() === hoje.getFullYear()
+    );
+  };
+
+  const hoje = isHoje(mostrarClimaSemana?.data);
+
   return (
     <>
       {tipo == 1 ? (
-        <div className="w-1/5">
+        <div className="w-2/5">
           <div className="flex flex-col justify-center items-center">
-            <p>{horaNumber}</p>
+            <p>{hora}</p>
             <span>
-              {IconeClima && (<IconeClima size={32} color="#0f1724" weight="bold" />)}
+              {IconeClima && (<IconeClima size={32} color="#000" />)}
             </span>
-            <p className="flex">{mostrarClimaDia?.temperatura} ºC</p>
+            <p className="flex font-semibold text-md">{mostrarClimaDia?.temperatura}ºC</p>
           </div>
         </div>
       ) : (
         <div className="w-full">
           <div className="flex gap-5 justify-start items-center">
-            <p>{dia}</p>
+            <p>{hoje ? "Hoje" : dia}</p>
             <span>
-              {IconeClimaSemana && (<IconeClimaSemana size={32} color="#0f1724" weight="bold" />)}
+              {IconeClimaSemana && (<IconeClimaSemana size={40} color="#000" />)}
             </span>
             <p>{getDescricaoClima(mostrarClimaSemana.weathercode)}</p>
             <p>{mostrarClimaSemana.tempMin}º - {mostrarClimaSemana.tempMax}º</p>

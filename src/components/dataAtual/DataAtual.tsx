@@ -36,17 +36,17 @@ const DataAtual = () => {
 
   return (
     <>
-      <div>
+      <div className="w-4/5 pb-3 md:mt-20">
         <motion.div
-          initial={{ opacity: 0, x: 0 }}
-          animate={{ opacity: 1, x: 100 }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 50 }}
           transition={{ duration: 1, ease: "easeOut", delay: 1.75 }}
           className="text-[#0F1724]"
         >
-          <div className="font-bold text-8xl text-[#faf9f6]">
+          <div className="font-bold md:text-6xl text-5xl text-shadow-md text-[#faf9f6] pt-3">
             <span>{horaFormatada}</span>
           </div>
-          <div className="font-semibold text-[#faf9f6] text-2xl">
+          <div className="font-semibold text-shadow-md text-[#faf9f6] text-md md:text-sm">
             <span>{dataFormatada}</span>
           </div>
         </motion.div>

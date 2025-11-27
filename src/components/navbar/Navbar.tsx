@@ -69,7 +69,7 @@ const Navbar = ({ onClimaCarregado, onClimaDiaCarregado, onClimaSemanaCarregado 
                 {isSearchOpen && (
                   <motion.input
                     initial={{ width: "0px", x: 200 }}
-                    animate={{ width: "384px", x: 0 }}
+                    animate={{ width: "200px", x: 0 }}
                     exit={{ width: "0px", x: 200 }}
                     transition={{ duration: 1, ease: "easeInOut" }}
                     value={cidade}

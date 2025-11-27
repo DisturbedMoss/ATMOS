@@ -4,11 +4,9 @@ import { motion } from "motion/react";
 type ClimaAtualProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   mostrarClima: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  iconeClima: any;
 };
 
-const ClimaAtual = ({ mostrarClima, iconeClima }: ClimaAtualProps) => {
+const ClimaAtual = ({ mostrarClima }: ClimaAtualProps) => {
   const [horaAtual, setHoraAtual] = useState(0);
 
   useEffect(() => {
@@ -31,17 +29,17 @@ const ClimaAtual = ({ mostrarClima, iconeClima }: ClimaAtualProps) => {
 
   return (
     <>
-      <div>
+      <div className="w-40 md:w-80">
         <motion.div
-          initial={{ opacity: 0, x: 0 }}
-          animate={{ opacity: 1, x: 100 }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 50 }}
           transition={{ duration: 1.25, ease: "easeOut", delay: 0.2 }}
-          className="text-[#0F1724]"
+          className="text-[#0F1724] w-40 md:w-80"
         >
           {mostrarClima ? (
             <>
               <div>
-                <span className="font-bold text-8xl">
+                <span className="font-semibold text-4xl md:text-6xl lg:text-7xl">
                   {mostrarClima.clima.temperature} ºC
                 </span>
               </div>
@@ -51,9 +49,9 @@ const ClimaAtual = ({ mostrarClima, iconeClima }: ClimaAtualProps) => {
               </div>
             </>
           ) : (
-            <div className="flex flex-col">
-              <span className="font-semibold text-8xl">{primeiraPalavra}</span>
-              <span className="font-semibold text-8xl">{segundaPalavra}</span>
+            <div className="flex flex-col w-40 md:w-80">
+              <span className="font-semibold w-40 md:w-80 text-4xl md:text-6xl lg:text-7xl">{primeiraPalavra}</span>
+              <span className="font-semibold w-40 md:w-80 text-4xl md:text-6xl lg:text-7xl">{segundaPalavra}</span>
             </div>
           )}
         </motion.div>
