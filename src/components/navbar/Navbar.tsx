@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { MagnifyingGlassIcon } from "@phosphor-icons/react";
+import { MagnifyingGlassIcon, XIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { buscarCidade } from "../../services/GeoCodingService";
@@ -102,7 +102,7 @@ const Navbar = ({ onClimaCarregado, onClimaDiaCarregado, onClimaSemanaCarregado 
                   onClick={buscarPorNome}
                   className="cursor-pointer"
                 >
-                  <MagnifyingGlassIcon
+                  <XIcon
                     size={24}
                     color="#0F1724"
                     weight="bold"

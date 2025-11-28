@@ -40,7 +40,7 @@ const Home = ({ mostrarClima, mostrarClimaDia, mostrarClimaSemana }: HomeProps) 
 
   return (
     <>
-      <div className="min-h-screen bg-cover bg-center bg-no-repeat font-poppins"
+      <div className="min-h-screen bg-cover bg-center bg-no-repeat font-poppins flex justify-center items-center"
            style={{
             backgroundImage: `url(${background})`
            }}
