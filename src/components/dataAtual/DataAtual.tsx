@@ -25,7 +25,7 @@ const DataAtual = ({mostrarClimaDia}: DataAtualProps) => {
     hour12: false,
     timeZone: timezone,
   });
-
+console.log()
   const dataFormatada = dataAgora.toLocaleDateString("pt-BR", {
     weekday: "long",
     day: "2-digit",
