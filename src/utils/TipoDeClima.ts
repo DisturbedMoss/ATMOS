@@ -30,41 +30,44 @@ export const getTipoDeClima = (codigo: number): number => {
 };
 
 export const getBackground = (codigo: number, hora: number): string => {
+  const isDia = hora >= 5 && hora < 18;
+  const isNoite = !isDia;
+  
   switch (true) {
-    case codigo == 0 || codigo == 8 || (codigo == 5 && hora >= 5 && hora < 18): //Céu Limpo dia
+    case (codigo == 0 || codigo == 8 || codigo == 5) && isDia: //Céu Limpo dia
       return "/AppClimaDia.jpg";
 
-    case codigo == 0 || codigo == 8 || (codigo == 5 && hora >= 18 && hora < 5): //Céu Limpo noite
+    case (codigo == 0 || codigo == 8 || codigo == 5) && isNoite: //Céu Limpo noite
       return "/AppClimaNoite.jpg";
 
-    case codigo == 1 && hora >= 5 && hora < 18: //Nublado dia
+    case codigo == 1 && isDia: //Nublado dia
       return "/AppClimaDia.jpg";
 
-    case codigo == 1 && hora >= 18 && hora < 5: //Nublado noite
+    case codigo == 1 && isNoite: //Nublado noite
       return "/AppClimaNoite.jpg";
 
-    case codigo == 2 && hora >= 5 && hora < 18: //Neblina dia
+    case codigo == 2 && isDia: //Neblina dia
       return "/AppClimaDiaNevoa.jpg";
 
-    case codigo == 2 && hora >= 18 && hora < 5: //Neblina noite
+    case codigo == 2 && isNoite: //Neblina noite
       return "/AppClimaNoiteNevoa.jpg";
 
-    case codigo == 3 && hora >= 5 && hora < 18: //Chuva dia
+    case codigo == 3 && isDia: //Chuva dia
       return "/AppClimaDiaChuva.png";
 
-    case codigo == 3 && hora >= 18 && hora < 5: //Chuva noite
+    case codigo == 3 && isNoite: //Chuva noite
       return "/AppClimaNoiteChuva.png";
 
-    case codigo == 4 || (codigo == 6 && hora >= 5 && hora < 18): //Neve Limpo dia
+    case (codigo == 4 || codigo == 6) && isDia: //Neve Limpo dia
       return "/AppClimaNeveDia.jpg";
 
-    case codigo == 4 || (codigo == 6 && hora >= 18 && hora < 5): //Neve Limpo noite
+    case (codigo == 4 || codigo == 6) && isNoite: //Neve Limpo noite
       return "/AppClimaNeveNoite.jpg";
 
-    case codigo == 7 && hora >= 5 && hora < 18: //Tempestade dia
+    case codigo == 7 && isDia: //Tempestade dia
       return "/AppClimaDiaVento.jpg";
 
-    case codigo == 7 && hora >= 18 && hora < 5: //Tempestade noite
+    case codigo == 7 && isNoite: //Tempestade noite
       return "/AppClimaNoiteNevoa.jpg";
 
     default:
@@ -73,17 +76,20 @@ export const getBackground = (codigo: number, hora: number): string => {
 };
 // <Sun size={32} />
 export const getIcone = (codigo: number, hora: number): string => {
+  const isDia = hora >= 5 && hora < 18;
+  const isNoite = !isDia;
+  
   switch (true) {
-    case codigo == 0 || codigo == 8 || (codigo == 5 && hora >= 5 && hora < 18): //Céu Limpo dia
+    case (codigo == 0 || codigo == 8 || codigo == 5) && isDia: //Céu Limpo dia
       return "SunIcon";
 
-    case codigo == 0 || codigo == 8 || (codigo == 5 && hora >= 18 && hora < 5): //Céu Limpo noite
+    case (codigo == 0 || codigo == 8 || codigo == 5) && isNoite: //Céu Limpo noite
       return "MoonIcon";
 
-    case codigo == 1 && hora >= 5 && hora < 18: //Nublado dia
+    case codigo == 1 && isDia: //Nublado dia
       return "SunIcon";
 
-    case codigo == 1 && hora >= 18 && hora < 5: //Nublado noite
+    case codigo == 1 && isNoite: //Nublado noite
       return "MoonIcon";
 
     case codigo == 2: //Neblina dia
@@ -92,7 +98,7 @@ export const getIcone = (codigo: number, hora: number): string => {
     case codigo == 3: //Chuva dia
       return "CloudRainIcon";
 
-    case codigo == 4 || codigo == 6: //Neve Limpo dia
+    case (codigo == 4 || codigo == 6): //Neve Limpo dia
       return "CloudSnowIcon";
 
     case codigo == 7: //Tempestade dia

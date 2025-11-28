@@ -50,7 +50,10 @@ export const carregarClimaDoDia = async (lat: number, lon: number) => {
         timezone: "auto",
       },
     });
-    return resposta.data.hourly;
+    return {
+      hourly: resposta.data.hourly,
+      timezone: resposta.data.timezone,
+    };
   } catch (e) {
     console.error(e);
     return null;

@@ -1,37 +1,37 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 
-const DataAtual = () => {
-  const [horaAtual, setHoraAtual] = useState(new Date());
-  const [diaAtual, setDiaAtual] = useState(new Date());
+type DataAtualProps = {
+  mostrarClimaDia: any;
+};
+
+const DataAtual = ({mostrarClimaDia}: DataAtualProps) => {
+  const timezone = mostrarClimaDia?.timezone ?? "UTC";
+  
+  const [dataAgora, setDataAgora] = useState(new Date());
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setHoraAtual(new Date());
+      setDataAgora(new Date());
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [mostrarClimaDia?.timezone]);
 
-  const horaFormatada = horaAtual.toLocaleTimeString("pt-BR", {
+  const horaFormatada = dataAgora.toLocaleTimeString("pt-BR", {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
+    timeZone: timezone,
   });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDiaAtual(new Date());
-    }, 600000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const dataFormatada = diaAtual.toLocaleDateString("pt-BR", {
+  const dataFormatada = dataAgora.toLocaleDateString("pt-BR", {
     weekday: "long",
     day: "2-digit",
     month: "short",
     year: "numeric",
+    timeZone: timezone,
   });
 
   return (

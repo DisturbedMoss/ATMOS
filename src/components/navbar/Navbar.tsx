@@ -40,7 +40,8 @@ const Navbar = ({ onClimaCarregado, onClimaDiaCarregado, onClimaSemanaCarregado 
         clima: clima,
       });
       onClimaDiaCarregado({
-        climaDia: climaDia,
+        climaDia: climaDia?.hourly,
+        timezone: climaDia?.timezone,
       });
       onClimaSemanaCarregado({
         climaSemana: climaSemana,

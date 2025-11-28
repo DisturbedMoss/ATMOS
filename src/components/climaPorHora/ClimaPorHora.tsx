@@ -16,10 +16,10 @@ const ClimaPorHora = ({ mostrarClimaDia }: CardClimaPorHoraProps) => {
     const dados = mostrarClimaDia?.climaDia;
     if (!dados?.time || !Array.isArray(dados.time)) return;
 
-    const hoje = new Date().toISOString().split("T")[0]; //especifica dados de hoje
+    const hoje = dados?.time[0].split("T")[0]; //especifica dados de hoje
 
     const horas = dados.time
-      .map((hora: number, i: number) => ({
+      .map((hora: string, i: number) => ({
         data: hora,
         temperatura: dados.temperature_2m[i],
         weathercode: dados.weather_code[i],

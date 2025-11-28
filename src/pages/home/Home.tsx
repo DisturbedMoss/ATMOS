@@ -13,22 +13,30 @@ type HomeProps = {
 };
 
 const Home = ({ mostrarClima, mostrarClimaDia, mostrarClimaSemana }: HomeProps) => {
+  const timezone = mostrarClimaDia?.timezone ?? "UTC";
+  
   const [background, setBackground] = useState("");
-  const [hora, setHora] = useState(0);
+  const [hora, setHora] = useState(new Date());
 
   useEffect(() => {
       const interval = setInterval(() => {
-        setHora(new Date().getHours());
+        setHora(new Date());
       }, 1000);
   
       return () => clearInterval(interval);
-    }, []);
+    }, [mostrarClimaDia?.timezone]);
+
+  const horaNumber = Number( hora.toLocaleTimeString("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: timezone,
+  }).slice(0, 2) );
 
   useEffect(() => {
-    setBackground(getBackground(mostrarClima?.clima?.weathercode, hora));  
+    setBackground(getBackground(mostrarClima?.clima?.weathercode, horaNumber));  
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mostrarClima]);
+  }, [mostrarClima, horaNumber]);
 
   return (
     <>
@@ -43,7 +51,7 @@ const Home = ({ mostrarClima, mostrarClimaDia, mostrarClimaSemana }: HomeProps) 
               <ClimaAtual mostrarClima={mostrarClima} />
             </div>
             <div>
-              <DataAtual />
+              <DataAtual mostrarClimaDia={mostrarClimaDia} />
             </div>
           </div>
           <div className="grid place-items-center md:grid-rows-4 grid-rows-3 gap-3">
