@@ -25,7 +25,7 @@ const ClimaPorDia = ({ mostrarClimaSemana }: CardClimaPorDiaProps) => {
   
   return (
     <>
-      <div className="w-100 sm:w-120 md:w-94 lg:w-140">
+      <div className="w-85 sm:w-115 md:w-94 lg:w-125">
         <div className="px-10 py-3 backdrop-blur-lg bg-white/20 rounded-2xl overflow-hidden">
           <p className="font-semibold">Previsão nos próximos 7 dias</p>
           {clima.map((dia, index) =>(

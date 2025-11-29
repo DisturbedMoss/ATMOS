@@ -47,7 +47,7 @@ const CardClima = ({ tipo, mostrarClimaSemana, mostrarClimaDia }: CardClimaProps
     <>
       {tipo == 1 ? (
         <div className="w-2/5">
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-center items-center text-2xs sm:text-md">
             <p>{hora}</p>
             <span>
               {IconeClima && (<IconeClima size={32} color="#000" />)}
@@ -57,10 +57,10 @@ const CardClima = ({ tipo, mostrarClimaSemana, mostrarClimaDia }: CardClimaProps
         </div>
       ) : (
         <div className="w-full">
-          <div className="flex gap-5 justify-start items-center">
+          <div className="flex gap-5 justify-start items-center text-2xs sm:text-md">
             <p>{hoje ? "Hoje" : dia}</p>
             <span>
-              {IconeClimaSemana && (<IconeClimaSemana size={40} color="#000" />)}
+              {IconeClimaSemana && (<IconeClimaSemana size={32} color="#000" />)}
             </span>
             <p>{getDescricaoClima(mostrarClimaSemana.weathercode)}</p>
             <p>{mostrarClimaSemana.tempMin}º - {mostrarClimaSemana.tempMax}º</p>

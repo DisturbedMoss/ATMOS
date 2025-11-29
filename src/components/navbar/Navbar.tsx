@@ -1,9 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { MagnifyingGlassIcon, XIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { buscarCidade } from "../../services/GeoCodingService";
-import { carregarClimaAtual, carregarClimaDaSemana, carregarClimaDoDia } from "../../services/OpenMeteoService";
+import {
+  carregarClimaAtual,
+  carregarClimaDaSemana,
+  carregarClimaDoDia,
+} from "../../services/OpenMeteoService";
 
 type NavbarProps = {
   onClimaCarregado: (clima: any) => void;
@@ -11,12 +16,18 @@ type NavbarProps = {
   onClimaSemanaCarregado: (clima: any) => void;
 };
 
-const Navbar = ({ onClimaCarregado, onClimaDiaCarregado, onClimaSemanaCarregado }: NavbarProps) => {
+const Navbar = ({
+  onClimaCarregado,
+  onClimaDiaCarregado,
+  onClimaSemanaCarregado,
+}: NavbarProps) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [cidade, setCidade] = useState("");
 
-  const onButtonClick = () => {
-    setIsSearchOpen((prev) => !prev);
+  const onButtonClick = (chave: number) => {
+    if(chave === 1) setIsSearchOpen((prev) => !prev);
+    
+    if (!cidade.trim() && chave === 0) setIsSearchOpen((prev) => !prev);
   };
 
   async function buscarPorNome() {
@@ -24,15 +35,22 @@ const Navbar = ({ onClimaCarregado, onClimaDiaCarregado, onClimaSemanaCarregado 
       const dadosCidade = await buscarCidade(cidade);
 
       if (!dadosCidade) {
-        alert("Cidade não encontrada");
+        if (cidade.trim()) alert("Cidade não encontrada");
+          
         return;
       }
 
       const clima = await carregarClimaAtual(dadosCidade.lat, dadosCidade.lon);
 
-      const climaDia = await carregarClimaDoDia(dadosCidade.lat, dadosCidade.lon);
+      const climaDia = await carregarClimaDoDia(
+        dadosCidade.lat,
+        dadosCidade.lon
+      );
 
-      const climaSemana = await carregarClimaDaSemana(dadosCidade.lat, dadosCidade.lon);
+      const climaSemana = await carregarClimaDaSemana(
+        dadosCidade.lat,
+        dadosCidade.lon
+      );
 
       onClimaCarregado({
         cidade: dadosCidade.nome,
@@ -46,7 +64,8 @@ const Navbar = ({ onClimaCarregado, onClimaDiaCarregado, onClimaSemanaCarregado 
       onClimaSemanaCarregado({
         climaSemana: climaSemana,
       });
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      
+      setCidade("");
     } catch (e) {
       alert("Não foi possível buscar a Cidade");
     }
@@ -65,7 +84,7 @@ const Navbar = ({ onClimaCarregado, onClimaDiaCarregado, onClimaSemanaCarregado 
             <div className="px-4 py-3">
               <p className="font-semibold text-2xl text-[#0F1724]">ATMOS</p>
             </div>
-            <div className="flex px-4 py-3 items-center gap-2">
+            <div className="flex px-4 items-center gap-2 overflow-hidden">
               <AnimatePresence>
                 {isSearchOpen && (
                   <motion.input
@@ -81,34 +100,46 @@ const Navbar = ({ onClimaCarregado, onClimaDiaCarregado, onClimaSemanaCarregado 
                   />
                 )}
               </AnimatePresence>
-              {!isSearchOpen ? (
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onButtonClick();
-                  }}
-                  className="cursor-pointer"
-                >
-                  <MagnifyingGlassIcon
-                    size={24}
-                    color="#0F1724"
-                    weight="bold"
-                  />
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  onClick={buscarPorNome}
-                  className="cursor-pointer"
-                >
-                  <XIcon
-                    size={24}
-                    color="#0F1724"
-                    weight="bold"
-                  />
-                </button>
-              )}
+
+              <AnimatePresence mode="wait">
+                {!isSearchOpen ? (
+                  <motion.button
+                    key="aberto-btn"
+                    initial={{ y: -50 }}
+                    animate={{ y: 0 }}
+                    exit={{y: 50}}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      
+                      onButtonClick(1);
+                    }}
+                    className="cursor-pointer"
+                  >
+                    <MagnifyingGlassIcon
+                      size={24}
+                      color="#0F1724"
+                      weight="bold"
+                    />
+                  </motion.button>
+                ) : (
+                  <motion.button
+                    key="fechado-btn"
+                    initial={{ y: -50 }}
+                    animate={{ y: 0 }}
+                    exit={{y: 50}}
+                    transition={{ duration: 0.25, ease: "easeIn" }}
+                    type="submit"
+                    onClick={() => {
+                      onButtonClick(0);
+                    }}
+                    className="cursor-pointer"
+                  >
+                    <XIcon size={24} color="#0F1724" weight="bold" />
+                  </motion.button>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>
