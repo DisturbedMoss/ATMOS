@@ -9,6 +9,7 @@ import {
   carregarClimaDaSemana,
   carregarClimaDoDia,
 } from "../../services/OpenMeteoService";
+import { Link } from "react-router-dom";
 
 type NavbarProps = {
   onClimaCarregado: (clima: any) => void;
@@ -82,7 +83,7 @@ const Navbar = ({
         <div className="fixed top-0 left-0 z-20 backdrop-blur-lg bg-white/20 w-full">
           <div className="w-full flex justify-between">
             <div className="px-4 py-3">
-              <p className="font-semibold text-2xl text-[#0F1724]">ATMOS</p>
+              <p className="font-semibold text-2xl text-[#0F1724]"><Link to="/">ATMOS</Link></p>
             </div>
             <div className="flex px-4 items-center gap-2 overflow-hidden">
               <AnimatePresence>
@@ -108,7 +109,7 @@ const Navbar = ({
                     initial={{ y: -50 }}
                     animate={{ y: 0 }}
                     exit={{y: 50}}
-                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    transition={{ duration: 0.10, ease: "easeOut" }}
                     type="button"
                     onClick={(e) => {
                       e.preventDefault();
@@ -129,7 +130,7 @@ const Navbar = ({
                     initial={{ y: -50 }}
                     animate={{ y: 0 }}
                     exit={{y: 50}}
-                    transition={{ duration: 0.25, ease: "easeIn" }}
+                    transition={{ duration: 0.10, ease: "easeIn" }}
                     type="submit"
                     onClick={() => {
                       onButtonClick(0);
