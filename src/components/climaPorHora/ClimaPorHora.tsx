@@ -23,13 +23,14 @@ const ClimaPorHora = ({ mostrarClimaDia }: CardClimaPorHoraProps) => {
     [Autoplay({ delay: 5000, stopOnInteraction: false })]
   );
 
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [slidesCount, setSlidesCount] = useState(0);
+  const [_selectedIndex, setSelectedIndex] = useState(0);
+  const [_slidesCount, setSlidesCount] = useState(0);
   const [hora, setHora] = useState(new Date());
 
   function scrollTo(index: number) {
     emblaApi?.scrollTo(index);
   }
+  void scrollTo;
 
   useEffect(() => {
     if (!emblaApi || clima.length === 0) return;
