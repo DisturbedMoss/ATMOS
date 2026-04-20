@@ -16,7 +16,7 @@ const ClimaAtual = ({ mostrarClima }: ClimaAtualProps) => {
 
     return () => clearInterval(interval);
   }, []);
-
+  
   const getSaudacao = () => {
     if (horaAtual >= 5 && horaAtual < 12) return "Bom dia";
     if (horaAtual >= 12 && horaAtual < 18) return "Boa tarde";
@@ -40,18 +40,18 @@ const ClimaAtual = ({ mostrarClima }: ClimaAtualProps) => {
             <>
               <div>
                 <span className="font-semibold text-4xl md:text-6xl lg:text-7xl">
-                  {mostrarClima.clima.temperature} ºC
+                  <p className="text-shadow-md text-shadow-sky-50/30">{mostrarClima.clima.temperature} ºC</p>
                 </span>
               </div>
               <div className="flex flex-col">
-                <span className="font-bold">{mostrarClima.cidade}</span>
-                <span className="font-semibold">{mostrarClima.pais}</span>
+                <span className="font-bold "><p className="text-shadow-md text-shadow-sky-50/30">{mostrarClima.cidade}</p></span>
+                <span className="font-semibold"><p className="text-shadow-md text-shadow-sky-50/30">{mostrarClima.pais}</p></span>
               </div>
             </>
           ) : (
             <div className="flex flex-col w-40 md:w-80">
-              <span className="font-semibold w-40 md:w-80 text-4xl md:text-6xl lg:text-7xl">{primeiraPalavra}</span>
-              <span className="font-semibold w-40 md:w-80 text-4xl md:text-6xl lg:text-7xl">{segundaPalavra}</span>
+              <span className="font-semibold w-40 md:w-80 text-4xl md:text-6xl lg:text-7xl"><p className="text-shadow-md text-shadow-sky-50/30">{primeiraPalavra}</p></span>
+              <span className="font-semibold w-40 md:w-80 text-4xl md:text-6xl lg:text-7xl"><p className="text-shadow-md text-shadow-sky-50/30">{segundaPalavra}</p></span>
             </div>
           )}
         </motion.div>

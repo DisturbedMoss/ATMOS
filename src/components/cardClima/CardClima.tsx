@@ -56,14 +56,14 @@ const CardClima = ({ tipo, mostrarClimaSemana, mostrarClimaDia }: CardClimaProps
           </div>
         </div>
       ) : (
-        <div className="w-full">
-          <div className="flex gap-5 justify-start items-center text-2xs sm:text-md">
-            <p>{hoje ? "Hoje" : dia}</p>
-            <span>
+        <div className="w-full border-b">
+          <div className="justify-start items-center grid grid-cols-12 gap-5 text-2xs sm:text-md">
+            <p className="col-span-1">{hoje ? "Hoje" : dia}</p>
+            <span className="col-span-1">
               {IconeClimaSemana && (<IconeClimaSemana size={32} color="#000" />)}
             </span>
-            <p>{getDescricaoClima(mostrarClimaSemana.weathercode)}</p>
-            <p>{mostrarClimaSemana.tempMin}º - {mostrarClimaSemana.tempMax}º</p>
+            <p className="col-span-6">{getDescricaoClima(mostrarClimaSemana.weathercode)}</p>
+            <p className="col-span-4">{mostrarClimaSemana.tempMin}º - {mostrarClimaSemana.tempMax}º</p>
           </div>
         </div>
       )}
