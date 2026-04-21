@@ -5,6 +5,7 @@ import ClimaPorDia from "../../components/climaPorDia/ClimaPorDia";
 import ClimaPorHora from "../../components/climaPorHora/ClimaPorHora";
 import DataAtual from "../../components/dataAtual/DataAtual";
 import { getBackground } from "../../utils/TipoDeClima";
+import { getUserData } from "../../utils/getUserData";
 
 type HomeProps = {
   mostrarClima: any;
