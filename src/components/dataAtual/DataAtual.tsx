@@ -6,9 +6,11 @@ type DataAtualProps = {
   mostrarClimaDia: any;
 };
 
-const DataAtual = ({mostrarClimaDia}: DataAtualProps) => {
-  const timezone = mostrarClimaDia?.timezone ?? "UTC";
-  
+const DataAtual = ({ mostrarClimaDia }: DataAtualProps) => {
+  const timezone =
+    mostrarClimaDia?.timezone ??
+    Intl.DateTimeFormat().resolvedOptions().timeZone;
+
   const [dataAgora, setDataAgora] = useState(new Date());
 
   useEffect(() => {
@@ -25,7 +27,7 @@ const DataAtual = ({mostrarClimaDia}: DataAtualProps) => {
     hour12: false,
     timeZone: timezone,
   });
-console.log()
+  console.log();
   const dataFormatada = dataAgora.toLocaleDateString("pt-BR", {
     weekday: "long",
     day: "2-digit",
