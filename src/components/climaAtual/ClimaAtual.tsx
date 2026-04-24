@@ -7,8 +7,22 @@ type ClimaAtualProps = {
   mostrarClima: any;
 };
 
+type Cidade = {
+      nome: string;
+      pais: string;
+    };
+
+    type Clima = {
+      temperature: number;
+    };
+
+    type UserData = {
+      cidade: Cidade | null;
+      clima: Clima;
+    };
+
 const ClimaAtual = ({ mostrarClima }: ClimaAtualProps) => {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
